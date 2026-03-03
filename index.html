@@ -48,7 +48,7 @@
         }
 
         #ramadan-section {
-            display: none; /* يظهر بعد فلاش الشعار */
+            display: none; 
             text-align: center;
             animation: fadeIn 1s ease-in;
         }
@@ -65,7 +65,6 @@
             margin-bottom: 25px;
         }
 
-        /* زر التالي الأنيق */
         .next-btn {
             background: transparent;
             color: var(--kku-green);
@@ -112,6 +111,7 @@
             border-radius: 10px;
             font-family: 'Tajawal';
             font-size: 16px;
+            box-sizing: border-box;
         }
 
         .submit-btn {
@@ -137,7 +137,7 @@
         <img src="شعار_جامعة_الملك_خالد.png" class="logo-flash" alt="KKU Logo">
         
         <div id="ramadan-section">
-            <img src="image_ed20b7.png" class="fanoos-img" alt="Ramadan Fanoos">
+            <img src="image_ed20b7.jpg" class="fanoos-img" alt="Ramadan Fanoos">
             <div class="greeting-text">
                 <h2>مبارك عليكم شهر رمضان</h2>
                 <p>تقبل الله منا ومنكم صالح الأعمال</p>
@@ -156,7 +156,7 @@
         <form id="kku-data-form">
             <div class="form-group">
                 <label>الاسم الرباعي</label>
-                <input type="text" name="name" placeholder="أدخل اسمك الكريم" required>
+                <input type="text" name="name" placeholder="أدخل اسمك " required>
             </div>
 
             <div style="display: flex; gap: 15px;">
@@ -205,12 +205,10 @@
     </div>
 
     <script>
-        // إظهار قسم رمضان بعد فلاش الشعار بـ 1.5 ثانية
         setTimeout(() => {
             document.getElementById('ramadan-section').style.display = 'block';
         }, 1500);
 
-        // وظيفة الانتقال للنموذج عند ضغط "التالي"
         function showForm() {
             const splash = document.getElementById('splash-screen');
             splash.style.opacity = '0';
@@ -221,8 +219,8 @@
             }, 800);
         }
 
-        // إرسال البيانات (استخدم رابط Google Apps Script الخاص بك هنا)
-        const scriptURL = https://script.google.com/macros/s/AKfycbyUulxJnohEPwJ1EaC9wrv20BMU9LqF4QjAOU1bTtFUc5te2J1hcFybD0U6nD7y1nbb/exec
+        // تم تصحيح السطر أدناه بإضافة علامات التنصيص
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbyUulxJnohEPwJ1EaC9wrv20BMU9LqF4QjAOU1bTtFUc5te2J1hcFybD0U6nD7y1nbb/exec';
         const form = document.getElementById('kku-data-form');
 
         form.addEventListener('submit', e => {
@@ -234,7 +232,10 @@
                     form.style.display = 'none';
                     document.getElementById('final-thanks').style.display = 'block';
                 })
-                .catch(error => alert('حدث خطأ، يرجى التحقق من الاتصال بالإنترنت'));
+                .catch(error => {
+                    alert('حدث خطأ، يرجى التحقق من الاتصال بالإنترنت');
+                    document.getElementById('btn-text').innerText = 'إرسال البيانات';
+                });
         });
     </script>
 </body>
