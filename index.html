@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>جامعة الملك خالد - قسم اللغة العربية</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --kku-green: #005826;
+            --kku-grey: #707070;
+            --gold-accent: #d4af37;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Tajawal', sans-serif;
+            background-color: #f4f4f4;
+            overflow-x: hidden;
+        }
+
+        /* شاشة الترحيب */
+        #splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            transition: opacity 0.8s ease;
+        }
+
+        .logo-flash {
+            width: 220px;
+            margin-bottom: 20px;
+            animation: flashEffect 2s ease-in-out forwards;
+        }
+
+        @keyframes flashEffect {
+            0% { opacity: 0; transform: scale(0.9); }
+            50% { opacity: 1; transform: scale(1.05); filter: drop-shadow(0 0 10px rgba(0,88,38,0.3)); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        #ramadan-section {
+            display: none; /* يظهر بعد فلاش الشعار */
+            text-align: center;
+            animation: fadeIn 1s ease-in;
+        }
+
+        .fanoos-img {
+            width: 180px;
+            height: auto;
+            margin-bottom: 15px;
+            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.1));
+        }
+
+        .greeting-text {
+            color: var(--kku-green);
+            margin-bottom: 25px;
+        }
+
+        /* زر التالي الأنيق */
+        .next-btn {
+            background: transparent;
+            color: var(--kku-green);
+            border: 2px solid var(--kku-green);
+            padding: 10px 40px;
+            font-size: 18px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        .next-btn:hover {
+            background: var(--kku-green);
+            color: white;
+            box-shadow: 0 4px 12px rgba(0,88,38,0.2);
+        }
+
+        /* محتوى النموذج الرئيسي */
+        #main-content {
+            display: none;
+            max-width: 650px;
+            margin: 40px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border-top: 8px solid var(--kku-green);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        header img { width: 160px; margin-bottom: 10px; }
+
+        .form-group { margin-bottom: 22px; }
+        label { display: block; margin-bottom: 8px; font-weight: bold; color: var(--kku-green); }
+        input, select {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            font-family: 'Tajawal';
+            font-size: 16px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            background: var(--kku-green);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .submit-btn:hover { background: #00401c; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+
+    <div id="splash-screen">
+        <img src="شعار_جامعة_الملك_خالد.png" class="logo-flash" alt="KKU Logo">
+        
+        <div id="ramadan-section">
+            <img src="image_ed20b7.jpg" class="fanoos-img" alt="Ramadan Fanoos">
+            <div class="greeting-text">
+                <h2>مبارك عليكم شهر رمضان</h2>
+                <p>تقبل الله منا ومنكم صالح الأعمال</p>
+            </div>
+            <button class="next-btn" onclick="showForm()">التالي</button>
+        </div>
+    </div>
+
+    <div id="main-content">
+        <header>
+            <img src="شعار_جامعة_الملك_خالد.png" alt="KKU Logo">
+            <h2 style="color: var(--kku-grey);">قسم اللغة العربية وآدابها</h2>
+            <p style="color: #888;">استمارة جمع بيانات أعضاء هيئة التدريس</p>
+        </header>
+
+        <form id="kku-data-form">
+            <div class="form-group">
+                <label>الاسم الرباعي</label>
+                <input type="text" name="name" placeholder="أدخل اسمك الكريم" required>
+            </div>
+
+            <div style="display: flex; gap: 15px;">
+                <div class="form-group" style="flex: 1;">
+                    <label>النوع</label>
+                    <select name="gender" required>
+                        <option value="ذكر">ذكر</option>
+                        <option value="أنثى">أنثى</option>
+                    </select>
+                </div>
+                <div class="form-group" style="flex: 1;">
+                    <label>الرقم الوظيفي</label>
+                    <input type="number" name="emp_id" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>الدرجة العلمية</label>
+                <select name="rank" required>
+                    <option value="" disabled selected>اختر الدرجة العلمية</option>
+                    <option value="أستاذ">أستاذ</option>
+                    <option value="أستاذ مشارك">أستاذ مشارك</option>
+                    <option value="أستاذ مساعد">أستاذ مساعد</option>
+                    <option value="محاضر">محاضر</option>
+                    <option value="معيد">معيد</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>رقم الجوال</label>
+                <input type="tel" name="phone" placeholder="05xxxxxxxx" required>
+            </div>
+
+            <div class="form-group">
+                <label>الإيميل الرسمي</label>
+                <input type="email" name="email" placeholder="example@kku.edu.sa" required>
+            </div>
+
+            <button type="submit" class="submit-btn" id="btn-text">إرسال البيانات</button>
+        </form>
+
+        <div id="final-thanks" style="display:none; text-align:center; padding: 40px;">
+            <h2 style="color: var(--kku-green);">شكراً لك</h2>
+            <p>سعادة عضو هيئة التدريس بجامعة الملك خالد، تم حفظ بياناتك بنجاح.</p>
+        </div>
+    </div>
+
+    <script>
+        // إظهار قسم رمضان بعد فلاش الشعار بـ 1.5 ثانية
+        setTimeout(() => {
+            document.getElementById('ramadan-section').style.display = 'block';
+        }, 1500);
+
+        // وظيفة الانتقال للنموذج عند ضغط "التالي"
+        function showForm() {
+            const splash = document.getElementById('splash-screen');
+            splash.style.opacity = '0';
+            setTimeout(() => {
+                splash.style.display = 'none';
+                document.getElementById('main-content').style.display = 'block';
+                document.getElementById('main-content').style.animation = 'fadeIn 0.8s ease';
+            }, 800);
+        }
+
+        // إرسال البيانات (استخدم رابط Google Apps Script الخاص بك هنا)
+        const scriptURL = 'ضع_رابط_جوجل_أبس_سكريبت_هنا';
+        const form = document.getElementById('kku-data-form');
+
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            document.getElementById('btn-text').innerText = 'جاري الحفظ...';
+            
+            fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+                .then(response => {
+                    form.style.display = 'none';
+                    document.getElementById('final-thanks').style.display = 'block';
+                })
+                .catch(error => alert('حدث خطأ، يرجى التحقق من الاتصال بالإنترنت'));
+        });
+    </script>
+</body>
+</html>
