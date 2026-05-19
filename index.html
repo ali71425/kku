@@ -644,31 +644,17 @@ rows="5"></textarea>
 
 </div>
 
-<div class="form-group">
-
-<label>
-رفع ملفات الإنتاج البحثي
-</label>
-
-<input type="file"
-id="research_files"
-multiple
-accept=".pdf,.jpg,.jpeg,.png,.doc,.docx">
-
-<div id="research_preview"></div>
-
-</div>
 
 <!-- الجوائز -->
 
 <div class="section-title">
-الجوائز العالمية
+الجوائز العلمية
 </div>
 
 <div class="form-group">
 
 <label>
-الجوائز العالمية
+الجوائز العلمية
 </label>
 
 <textarea name="international_awards"
@@ -676,20 +662,6 @@ rows="5"></textarea>
 
 </div>
 
-<div class="form-group">
-
-<label>
-رفع ملفات الجوائز
-</label>
-
-<input type="file"
-id="awards_files"
-multiple
-accept=".pdf,.jpg,.jpeg,.png,.doc,.docx">
-
-<div id="awards_preview"></div>
-
-</div>
 
 <button type="submit"
 class="submit-btn"
@@ -774,9 +746,7 @@ document.getElementById(
 const uploadedFiles = {
 
 courses_files:[],
-discussion_files:[],
-research_files:[],
-awards_files:[]
+discussion_files:[]
 
 };
 
@@ -795,15 +765,7 @@ setupFileInput(
 'discussion_preview'
 );
 
-setupFileInput(
-'research_files',
-'research_preview'
-);
 
-setupFileInput(
-'awards_files',
-'awards_preview'
-);
 
 
 /****************************************
@@ -1046,15 +1008,7 @@ await processFiles(
 'discussion_files'
 );
 
-formData.research_files=
-await processFiles(
-'research_files'
-);
 
-formData.awards_files=
-await processFiles(
-'awards_files'
-);
 
 
 /****************************************
