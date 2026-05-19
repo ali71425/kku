@@ -392,6 +392,81 @@ color:var(--kku-green);
 
 }
 
+/****************************************
+ * شاشة التحميل
+ ****************************************/
+
+#loading-overlay{
+
+position:fixed;
+
+inset:0;
+
+background:rgba(255,255,255,.92);
+
+display:none;
+
+justify-content:center;
+
+align-items:center;
+
+z-index:9999;
+
+backdrop-filter:blur(3px);
+
+}
+
+.loading-box{
+
+text-align:center;
+
+}
+
+.loading-box p{
+
+margin-top:20px;
+
+font-size:20px;
+
+color:var(--kku-green);
+
+font-weight:bold;
+
+}
+
+.loader{
+
+width:70px;
+height:70px;
+
+border:6px solid #ddd;
+
+border-top:6px solid var(--kku-green);
+
+border-radius:50%;
+
+animation:spin 1s linear infinite;
+
+margin:auto;
+
+}
+
+@keyframes spin{
+
+0%{
+
+transform:rotate(0deg);
+
+}
+
+100%{
+
+transform:rotate(360deg);
+
+}
+
+}
+
 @media(max-width:768px){
 
 .row{
@@ -644,7 +719,6 @@ rows="5"></textarea>
 
 </div>
 
-
 <!-- الجوائز -->
 
 <div class="section-title">
@@ -661,7 +735,6 @@ rows="5"></textarea>
 rows="5"></textarea>
 
 </div>
-
 
 <button type="submit"
 class="submit-btn"
@@ -681,6 +754,22 @@ id="btn-text">
 
 <p>
 تم حفظ البيانات بنجاح
+</p>
+
+</div>
+
+</div>
+
+<!-- شاشة الانتظار -->
+
+<div id="loading-overlay">
+
+<div class="loading-box">
+
+<div class="loader"></div>
+
+<p>
+نأمل الانتظار ريثما يتم رفع الملفات وتسجيل ردك
 </p>
 
 </div>
@@ -764,8 +853,6 @@ setupFileInput(
 'discussion_files',
 'discussion_preview'
 );
-
-
 
 
 /****************************************
@@ -928,6 +1015,10 @@ submitBtn.innerText=
 
 submitBtn.disabled=true;
 
+document.getElementById(
+'loading-overlay'
+).style.display='flex';
+
 try{
 
 const formData={
@@ -1009,8 +1100,6 @@ await processFiles(
 );
 
 
-
-
 /****************************************
  * إرسال البيانات
  ****************************************/
@@ -1059,6 +1148,10 @@ alert(
 }
 
 finally{
+
+document.getElementById(
+'loading-overlay'
+).style.display='none';
 
 submitBtn.innerText=
 'إرسال البيانات';
