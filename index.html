@@ -730,7 +730,7 @@ accept=".pdf,.jpg,.jpeg,.png,.doc,.docx">
 <!-- الانتاج البحثي -->
 
 <div class="section-title">
-الجوائز والأبحاث في الأوعية العالمية
+الإنتاج البحثي والعلمي
 </div>
 
 <div class="form-group">
@@ -745,6 +745,42 @@ rows="5"></textarea>
 </div>
 
 
+<!-- الجوائز والأبحاث في الأوعية العالمية -->
+
+<div class="section-title">
+الجوائز والأبحاث في الأوعية العالمية
+</div>
+
+<div class="form-group">
+
+<label>
+الجوائز والأبحاث في الأوعية العالمية
+</label>
+
+<textarea
+name="global_awards_research"
+rows="5"></textarea>
+
+</div>
+
+<div class="form-group">
+
+<label>
+رفع الشواهد
+</label>
+
+<input type="file"
+id="global_awards_files"
+multiple
+accept=".pdf,.jpg,.jpeg,.png,.doc,.docx">
+
+<div id="global_awards_preview"></div>
+
+<div class="file-note">
+يمكنك اختيار الملفات على دفعات متعددة
+</div>
+
+</div>
 
 <button type="submit"
 class="submit-btn"
@@ -846,7 +882,8 @@ const uploadedFiles = {
 
 courses_files:[],
 discussion_files:[],
-appointment_file:[]
+appointment_file:[],
+global_awards_files:[]
 
 };
 
@@ -868,6 +905,10 @@ setupFileInput(
 setupFileInput(
 'appointment_file',
 'appointment_preview'
+);
+setupFileInput(
+'global_awards_files',
+'global_awards_preview'
 );
 
 /****************************************
@@ -1064,8 +1105,8 @@ form.external_discussions.value,
 research_output:
 form.research_output.value,
 
-international_awards:
-form.international_awards.value
+global_awards_research:
+form.global_awards_research.value,
 
 };
 
@@ -1120,6 +1161,10 @@ await processFiles(
 'appointment_file'
 );
 
+formData.global_awards_files=
+await processFiles(
+'global_awards_files'
+);
 
 /****************************************
  * إرسال البيانات
