@@ -621,6 +621,31 @@ required>
 
 </select>
 
+ <div class="form-group">
+
+<label>
+التخصص الدقيق
+</label>
+
+<input type="text"
+name="specialization">
+
+</div>
+
+<div class="form-group">
+
+<label>
+رفع قرار التعيين
+</label>
+
+<input type="file"
+id="appointment_file"
+accept=".pdf,.jpg,.jpeg,.png,.doc,.docx">
+
+<div id="appointment_preview"></div>
+
+</div>
+
 </div>
 
 <div class="form-group">
@@ -705,7 +730,7 @@ accept=".pdf,.jpg,.jpeg,.png,.doc,.docx">
 <!-- الانتاج البحثي -->
 
 <div class="section-title">
-الإنتاج البحثي والعلمي
+الجوائز والأبحاث في الأوعية العالمية
 </div>
 
 <div class="form-group">
@@ -820,7 +845,8 @@ document.getElementById(
 const uploadedFiles = {
 
 courses_files:[],
-discussion_files:[]
+discussion_files:[],
+appointment_file:[]
 
 };
 
@@ -839,6 +865,10 @@ setupFileInput(
 'discussion_preview'
 );
 
+setupFileInput(
+'appointment_file',
+'appointment_preview'
+);
 
 /****************************************
  * إضافة ملفات
@@ -977,7 +1007,7 @@ error=>reject(error);
  ****************************************/
 
 const scriptURL =
-'https://script.google.com/macros/s/AKfycbyQDOoYZxKC0DFQ-ocKMMlojSJCUMk3CGsc4-iwmnJd6gYeX0Oi1phLPxIhJgNgzdj3YA/exec';
+'https://script.google.com/macros/s/AKfycbygtR71C0WK9cB0fRf-1-YBWtjsqlVAh9_cE3ltupe4EVKKICRBJVW6JfBn1I_Wtko5/exec';
 
 const form =
 document.getElementById(
@@ -1019,6 +1049,8 @@ form.emp_id.value,
 
 rank:
 form.rank.value,
+specialization:
+form.specialization.value,
 
 phone:
 form.phone.value,
@@ -1082,6 +1114,10 @@ await processFiles(
 formData.discussion_files=
 await processFiles(
 'discussion_files'
+);
+formData.appointment_file=
+await processFiles(
+'appointment_file'
 );
 
 
